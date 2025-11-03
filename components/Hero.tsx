@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GithubIcon, LinkedinIcon, MailIcon, GlobeIcon } from './icons';
 
-const roles = ["Java Full Stack Developer", "React Enthusiast", "Android Developer", "Problem Solver"];
+const roles = ["Java Full Stack Developer", "Software Developer", "Android Developer", "Problem Solver"];
 
 const Hero: React.FC = () => {
   const [index, setIndex] = useState(0);

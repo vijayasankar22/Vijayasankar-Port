@@ -30,7 +30,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div ref={appRef} className="min-h-screen bg-[url('Public/background.jpg')] text-gray-200 font-sans overflow-x-hidden">
+    <div ref={appRef} className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-700 p-8 text-gray-200 font-sans overflow-x-hidden">
       {/* Interactive gradient background */}
       <div 
         className="pointer-events-none fixed inset-0 z-0"

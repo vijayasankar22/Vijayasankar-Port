@@ -35,7 +35,7 @@ const App: React.FC = () => {
       <div 
         className="pointer-events-none fixed inset-0 z-0"
         style={{
-          background: `radial-gradient(1600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(214, 4, 74, 0.25), transparent 50%)`
+          background: `radial-gradient(1600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(214, 4, 74, 0.25), transparent 40%)`
         }}
       />
       

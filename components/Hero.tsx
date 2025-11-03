@@ -28,9 +28,10 @@ const Hero: React.FC = () => {
   }, [subIndex, index, reverse]);
 
   return (
-   <section style={{ backgroundColor: 'red', minHeight: '100vh' }}>
-  test
-</section>
+  <section
+  id="hero"
+  className="min-h-screen flex flex-col justify-center items-center text-center bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat"
+>
 
       <div className="max-w-4xl">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 animate-fade-in-down">

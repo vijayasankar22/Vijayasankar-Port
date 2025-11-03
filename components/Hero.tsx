@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
     <section
   id="hero"
   className="min-h-screen flex flex-col justify-center items-center text-center bg-cover bg-center bg-no-repeat"
-  style={{ backgroundImage: "url('/public/background.jpg')" }}
+  style={{ backgroundImage: "url('/Public/background.jpg')" }}
 >
       <div className="max-w-4xl">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 animate-fade-in-down">

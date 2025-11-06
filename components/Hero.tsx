@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
 
       <div className="max-w-4xl">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 animate-fade-in-down">
-          VIJAYASANKAR P
+          VIJAYASANKAR
         </h1>
         <h2 className="text-2xl md:text-3xl font-semibold text-[#e13b78] mb-8 animate-fade-in-up">
           {`${roles[index].substring(0, subIndex)}`}
@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
           <a href="https://github.com/vijayasankar22" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
             <GithubIcon />
           </a>
-          <a href="https://linkedin.com/vijayasankarp" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
+          <a href="https://linkedin.com/in/vijayasankarp" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
             <LinkedinIcon />
           </a>
           <a href="mailto:vijayasankar2225@gmail.com" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">

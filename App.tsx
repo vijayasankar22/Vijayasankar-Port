@@ -32,7 +32,7 @@ const App: React.FC = () => {
       <div
         className="fixed inset-0 -z-20 bg-center bg-cover bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: `url('/images.jpg')`, // ✅ use /images.jpg (not Public/)
+          backgroundImage: `url('/image.jpg')`, // ✅ use /images.jpg (not Public/)
           filter: 'blur(8px) brightness(0.6)  hue-rotate(0deg)', // 👈 adds blur + reduces opacity
           transform: 'scale(1.1)', // avoids edge gaps due to blur
         }}

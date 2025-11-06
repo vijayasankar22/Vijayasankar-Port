@@ -23,23 +23,35 @@ const App: React.FC = () => {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
-    <div ref={appRef} className="min-h-screen bg-[linear-gradient(to_right,#110914,#0e011f)] p-8 text-gray-200 font-sans overflow-x-hidden">
-      {/* Interactive gradient background */}
-      <div 
-        className="pointer-events-none fixed inset-0 z-0"
+    <div ref={appRef} className="min-h-screen relative text-gray-200 font-sans overflow-x-hidden">
+      {/* 🖼️ Blurred + darkened background layer */}
+      <div
+        className="fixed inset-0 -z-20 bg-center bg-cover bg-no-repeat bg-fixed"
         style={{
-          background: `radial-gradient(1600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(214, 4, 74, 0.25), transparent 40%)`
+          backgroundImage: `url('Public/images.jpg')`, // ✅ use /images.jpg (not Public/)
+          filter: 'blur(8px) brightness(0.6)  hue-rotate(0deg)', // 👈 adds blur + reduces opacity
+          transform: 'scale(1.1)', // avoids edge gaps due to blur
         }}
       />
-      
-      <div className="relative z-10">
+
+      {/* 🌈 Optional soft gradient overlay for cinematic feel */}
+      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(214,4,74,0.15),rgba(0,0,0,0.85))]" />
+
+      {/* 💡 Dynamic glowing gradient following mouse */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 transition-all duration-300"
+        style={{
+          background: `radial-gradient(1000px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(214, 4, 74, 0.3), transparent 40%)`,
+          mixBlendMode: 'screen',
+        }}
+      />
+
+      {/* 🧠 Main content */}
+      <div className="relative z-10 p-8">
         <Header />
         <main className="container mx-auto px-6 md:px-12">
           <Hero />

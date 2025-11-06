@@ -42,10 +42,10 @@ const Hero: React.FC = () => {
           <span className="animate-pulse">|</span>
         </h2>
         <div className="flex justify-center space-x-6 animate-fade-in">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
+          <a href="https://github.com/vijayasankar22" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
             <GithubIcon />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
+          <a href="https://linkedin.com/vijayasankarp" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
             <LinkedinIcon />
           </a>
           <a href="mailto:vijayasankar2225@gmail.com" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">

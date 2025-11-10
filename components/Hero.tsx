@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
   const [reverse, setReverse] = useState(false);
   const [codeTexts, setCodeTexts] = useState(Array(liveCodes.length).fill(""));
 
-  // Typing effect for role text
+  // Typing animation
   useEffect(() => {
     if (subIndex === roles[index].length + 1 && !reverse) {
       setTimeout(() => setReverse(true), 1800);
@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
     return () => clearTimeout(t);
   }, [subIndex, index, reverse]);
 
-  // Live coding simulation
+  // Floating code animation
   useEffect(() => {
     liveCodes.forEach((code, i) => {
       let idx = 0;
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden px-2 sm:px-8"
+      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden"
       style={{
         backgroundImage: "url('/background.jpg')",
         backgroundSize: "cover",
@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
         {`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@800&family=Source+Code+Pro:wght@400;600&display=swap');
 
-/* 💻 Floating Code */
+/* Floating code animation */
 .live-code {
   position: absolute;
   font-family: 'Source Code Pro', monospace;
@@ -128,15 +128,12 @@ const Hero: React.FC = () => {
   100% { transform: translateY(0px) rotate(-2deg); }
 }
 
-/* 🩶 Porcelain 3D Name */
+/* Modern 3D Font */
 .modern-font {
   font-family: 'Poppins','Montserrat',sans-serif;
-  letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
-  white-space: nowrap; /* single line */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  letter-spacing: 1px;
   text-shadow:
     0 1px 0 #f8f8f8,
     0 2px 1px rgba(0,0,0,0.05),
@@ -154,10 +151,22 @@ const Hero: React.FC = () => {
     0 6px 4px rgba(220,220,255,0.2),
     0 10px 6px rgba(180,180,255,0.15);
 }
+
+/* Edge-to-edge responsive centered name */
+.name-fit {
+  font-size: clamp(3rem, 13vw, 8rem);
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1;
+  margin: 0 auto;
+  text-align: center;
+  transform: translateX(0);
+  max-width: 100%;
+}
 `}
       </style>
 
-      {/* 🧠 Floating Code Background */}
+      {/* Floating Background Code */}
       {codeTexts.map((txt, i) => (
         <div
           key={i}
@@ -174,32 +183,25 @@ const Hero: React.FC = () => {
         </div>
       ))}
 
-      {/* 🌟 Foreground Content */}
-      <div className="w-full z-10 backdrop-blur-[1px] px-2 sm:px-0">
+      {/* Foreground Content */}
+      <div className="w-full z-10 backdrop-blur-[1px] m-0 p-0">
         <h1 className="text-3xl md:text-4xl text-gray-200 mb-2 animate-fade-in-down">
           Hi, I'm
         </h1>
 
-        {/* 🩶 Name - single line, full width */}
-        <h1
-          className="font-extrabold mb-6 modern-font leading-tight text-white mx-auto"
-          style={{
-            fontSize: "clamp(2.4rem, 13vw, 6rem)", // large and responsive
-            width: "100%",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textAlign: "center",
-          }}
-        >
-          VIJAYASANKAR
-        </h1>
+        {/* ✅ Centered and fully visible name */}
+        <div className="flex justify-center w-full overflow-hidden">
+          <h1 className="font-extrabold modern-font name-fit text-white">
+            VIJAYASANKAR
+          </h1>
+        </div>
 
         <h2 className="text-2xl md:text-3xl font-semibold text-[#ff2f8a] mb-8 animate-fade-in-up">
           {roles[index].substring(0, subIndex)}
           <span className="animate-pulse">|</span>
         </h2>
 
-        {/* 🔗 Social Links */}
+        {/* Social Links */}
         <div className="flex justify-center space-x-6 animate-fade-in">
           <a
             href="https://github.com/vijayasankar22"
@@ -226,7 +228,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* ⬇️ Scroll Arrow */}
+      {/* Scroll Arrow */}
       <a href="#about" className="absolute bottom-10 animate-bounce z-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,6 @@
+"use client";
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { GithubIcon, LinkedinIcon, MailIcon } from "./icons";
 
 const roles = [
@@ -45,7 +47,7 @@ const Hero: React.FC = () => {
   const [reverse, setReverse] = useState(false);
   const [codeTexts, setCodeTexts] = useState(Array(liveCodes.length).fill(""));
 
-  // Typing animation
+  // Typing animation for roles
   useEffect(() => {
     if (subIndex === roles[index].length + 1 && !reverse) {
       setTimeout(() => setReverse(true), 1800);
@@ -65,7 +67,7 @@ const Hero: React.FC = () => {
 
   // Floating code animation
   useEffect(() => {
-    liveCodes.forEach((code, i) => {
+    const intervals = liveCodes.map((code, i) => {
       let idx = 0;
       const randomDelay = 30 + Math.random() * 40;
       const interval = setInterval(() => {
@@ -85,8 +87,9 @@ const Hero: React.FC = () => {
           }, 3000);
         }
       }, randomDelay);
-      return () => clearInterval(interval);
+      return interval;
     });
+    return () => intervals.forEach(clearInterval);
   }, []);
 
   return (
@@ -103,7 +106,7 @@ const Hero: React.FC = () => {
         {`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@800&family=Source+Code+Pro:wght@400;600&display=swap');
 
-/* Floating code animation */
+/* Floating code background */
 .live-code {
   position: absolute;
   font-family: 'Source Code Pro', monospace;
@@ -113,10 +116,10 @@ const Hero: React.FC = () => {
   line-height: 1.6;
   user-select: none;
   pointer-events: none;
-  opacity: 0.1;
+  opacity: 0.12;
   text-shadow:
-    0 0 4px rgba(255, 64, 150, 0.2),
-    0 0 10px rgba(255, 64, 150, 0.15);
+    0 0 6px rgba(255, 64, 150, 0.2),
+    0 0 12px rgba(255, 64, 150, 0.15);
   animation: floatLoop 14s ease-in-out infinite;
 }
 
@@ -128,45 +131,32 @@ const Hero: React.FC = () => {
   100% { transform: translateY(0px) rotate(-2deg); }
 }
 
-/* Modern 3D Font */
-.modern-font {
+/* 🌈 Glowing Gradient Name (white by default) */
+.gradient-name {
   font-family: 'Poppins','Montserrat',sans-serif;
   text-transform: uppercase;
-  color: #fff;
-  letter-spacing: 1px;
-  text-shadow:
-    0 1px 0 #f8f8f8,
-    0 2px 1px rgba(0,0,0,0.05),
-    0 4px 2px rgba(0,0,0,0.04),
-    0 8px 4px rgba(0,0,0,0.03),
-    0 16px 8px rgba(0,0,0,0.02);
-  transition: transform 0.25s ease, text-shadow 0.25s ease;
+  font-size: clamp(2.5rem, 10vw, 5.5rem);
+  font-weight: 800;
+  color: #ffffff; /* ✅ White by default */
+  position: relative;
+  transition: transform 0.3s ease, text-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
-.modern-font:hover {
-  transform: scale(1.03);
+/* Hover → gradient glow */
+.gradient-name:hover {
+  background: linear-gradient(90deg, #ff2f8a, #ff7ad9, #b48fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow:
-    0 1px 0 #ffffff,
-    0 2px 1px rgba(255,255,255,0.4),
-    0 6px 4px rgba(220,220,255,0.2),
-    0 10px 6px rgba(180,180,255,0.15);
-}
-
-/* Edge-to-edge responsive centered name */
-.name-fit {
-  font-size: clamp(3rem, 13vw, 8rem);
-  display: inline-block;
-  white-space: nowrap;
-  line-height: 1;
-  margin: 0 auto;
-  text-align: center;
-  transform: translateX(0);
-  max-width: 100%;
+    0 0 10px rgba(255, 64, 150, 0.6),
+    0 0 20px rgba(255, 64, 150, 0.4),
+    0 0 30px rgba(255, 64, 150, 0.3);
+  transform: scale(1.05);
 }
 `}
       </style>
 
-      {/* Floating Background Code */}
+      {/* Floating Code Background */}
       {codeTexts.map((txt, i) => (
         <div
           key={i}
@@ -179,30 +169,52 @@ const Hero: React.FC = () => {
           }}
         >
           {txt}
-          <span className="text-[#fff] animate-pulse">|</span>
+          <span className="text-white animate-pulse">|</span>
         </div>
       ))}
 
       {/* Foreground Content */}
-      <div className="w-full z-10 backdrop-blur-[1px] m-0 p-0">
-        <h1 className="text-3xl md:text-4xl text-gray-200 mb-2 animate-fade-in-down">
+      <motion.div
+        className="w-full z-10 backdrop-blur-[1px] m-0 p-0"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <motion.h1
+          className="text-3xl md:text-4xl text-gray-200 mb-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 1 }}
+        >
           Hi, I'm
-        </h1>
+        </motion.h1>
 
-        {/* ✅ Centered and fully visible name */}
-        <div className="flex justify-center w-full overflow-hidden">
-          <h1 className="font-extrabold modern-font name-fit text-white">
-            VIJAYASANKAR
-          </h1>
-        </div>
+        <motion.h1
+          className="gradient-name"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 1.2, type: "spring" }}
+        >
+          VIJAYASANKAR
+        </motion.h1>
 
-        <h2 className="text-2xl md:text-3xl font-semibold text-[#ff2f8a] mb-8 animate-fade-in-up">
+        <motion.h2
+          className="text-2xl md:text-3xl font-semibold text-[#ff2f8a] mt-3 mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+        >
           {roles[index].substring(0, subIndex)}
           <span className="animate-pulse">|</span>
-        </h2>
+        </motion.h2>
 
         {/* Social Links */}
-        <div className="flex justify-center space-x-6 animate-fade-in">
+        <motion.div
+          className="flex justify-center space-x-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1.2 }}
+        >
           <a
             href="https://github.com/vijayasankar22"
             target="_blank"
@@ -225,11 +237,16 @@ const Hero: React.FC = () => {
           >
             <MailIcon />
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Scroll Arrow */}
-      <a href="#about" className="absolute bottom-10 animate-bounce z-10">
+      {/* Scroll Down Arrow */}
+      <motion.a
+        href="#about"
+        className="absolute bottom-10 z-10"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-8 w-8 text-[#ff2f8a]"
@@ -239,7 +256,7 @@ const Hero: React.FC = () => {
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
-      </a>
+      </motion.a>
     </section>
   );
 };
